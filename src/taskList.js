@@ -1,7 +1,7 @@
 export default class taskList {
   constructor(name) {
     this._taskList = [];
-    this._projectName (name);
+    this._projectName =name;
   }
 
   getTaskList() {

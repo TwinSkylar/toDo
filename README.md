@@ -1,4 +1,15 @@
-# toDo
-Creates a todo list 
+# 🚀 Welcome to your new awesome project!
 
-Excercise in working with objects and composition.
+This project has been created using **webpack-cli**, you can now run
+
+```
+npm run build
+```
+
+or
+
+```
+yarn build
+```
+
+to bundle your application

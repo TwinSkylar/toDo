@@ -1,5 +1,8 @@
 import toDo from './todos.js';
 import taskList from './taskList.js';
+import {ScreenController} from './UIController.js';
+import css from './styles.css';
+
 
 /*test cases*/
 const a = new toDo("title1", "description 1", "dueDate", 5, "notes");
@@ -30,3 +33,5 @@ console.log (list);
 list.removeTask(a);
 
 console.log (list);
+
+ScreenController();
