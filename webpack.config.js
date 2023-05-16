@@ -43,9 +43,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       //Sets the favicon
-      favicon: "./src/images/todofavicon.png",
+      favicon: "src/images/todofavicon.png",
       //uses an html as a template before
-      template: "./src/index.html",
+      template: "src/index.html",
     }),
   ],
 };

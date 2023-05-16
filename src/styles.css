@@ -15,8 +15,8 @@
 body {
   height: 100vh;
   display: grid;
-  grid-template-rows: minmax(min-content,10%) 1fr 2rem;
-  grid-template-columns: minmax(max-content,15%) auto;
+  grid-template-rows: minmax(min-content, 10%) 1fr 2rem;
+  grid-template-columns: minmax(max-content, 15%) auto;
   grid-template-areas:
     "header header"
     "menu content"
@@ -26,13 +26,18 @@ body {
 #header {
   background-color: blue;
   grid-area: header;
+  display: flex;
+  align-items: center;
+  font-size: 36px;
+  gap: 10px;
 }
+
 #menu {
   background-color: orange;
   grid-area: menu;
-  display:grid;
+  display: grid;
   grid-template-rows: 2rem max-content max-content;
-  gap:20px;
+  gap: 20px;
 }
 #content {
   background-color: green;
@@ -45,6 +50,9 @@ body {
   text-align: center;
 }
 
-#header,#menu,#content,#footer{
-  padding:10px;
+#header,
+#menu,
+#content,
+#footer {
+  padding: 10px;
 }

@@ -1,3 +1,5 @@
+import taskList from './taskList.js';
+
 export default class Project {
   constructor(name) {
     this._name = name;
@@ -5,7 +7,7 @@ export default class Project {
   }
 
   getName() {
-    return this.name;
+    return this._name;
   }
   setName(name) {
     this._name = name;
