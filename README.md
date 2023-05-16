@@ -1,15 +1,7 @@
-# 🚀 Welcome to your new awesome project!
+This is a project that manages a to do list.
 
-This project has been created using **webpack-cli**, you can now run
+Lessons learned:
 
-```
-npm run build
-```
+Sources:
 
-or
-
-```
-yarn build
-```
-
-to bundle your application
+Icon: https://icons8.com/icon/w0JUG294E8rU/
