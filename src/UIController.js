@@ -70,10 +70,6 @@ function displayProject(project) {
     const taskDate = document.createElement("div");
     taskDate.textContent = "Date";
 
-    //Add an edit for the task
-    const edit = document.createElement("div");
-    edit.textContent = "edit";
-
     //Add a delete for the task
     const del = document.createElement("div");
     del.textContent = "delete";
@@ -87,7 +83,6 @@ function displayProject(project) {
     toDoContainer.appendChild(taskName);
     toDoContainer.appendChild(details);
     toDoContainer.appendChild(taskDate);
-    toDoContainer.appendChild(edit);
     toDoContainer.appendChild(del);
 
     //Attaches the task element to the content window
