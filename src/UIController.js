@@ -34,18 +34,19 @@ function displayProject(project) {
   const content = document.getElementById("content");
   const taskList = project.getTasks();
   
-  console.log (project);
-  console.log (taskList);
-  console.log (taskList.getTaskList());
-
+  //Populate the tasklist from the project
   taskList.getTaskList().forEach((element) => {    
     const btn = document.createElement("button");
     btn.textContent = element.getTitle();
-    console.log ('hit element: ' + element + " and " + element.getTitle());
     dom.appendChild(btn);
   });
+
+  //Add task button
+
+  const addTask = document.createElement("button");
+  addTask.textContent = "+ Add task";
+  dom.appendChild(addTask);
+
   content.replaceChildren();
   content.appendChild(dom);  
-
-  console.log ("button pressed");
 }
