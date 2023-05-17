@@ -1,18 +1,13 @@
 export default class taskList {
   constructor(name) {
     this._taskList = [];
-    this._projectName =name;
   }
 
   getTaskList() {
-    return this.taskList;
+    return this._taskList;
   }
 
-  getProjectName() {
-    return this._projectName;
-  }
-
-  addTask(task) {
+   addTask(task) {
     this._taskList.push(task);
   }
   removeTask(task) {
