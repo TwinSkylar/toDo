@@ -26,7 +26,7 @@ export default class toDo {
     this._dueDate=date;
   }
   getPriority() {
-    return this._dueDate;
+    return this._priority;
   }
   setPriority(priority){
     this._priority=priority;
