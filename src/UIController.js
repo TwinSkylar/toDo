@@ -1,4 +1,7 @@
 import projects from "./projects.js";
+import customModal from "./modal/modal.js";
+import css from './modal/modal.css';
+
 
 export function ScreenController(allProjects) {
   const home = document.getElementById("home");
@@ -12,6 +15,39 @@ function renderPage(section, dom) {
   const content = document.getElementById(section);
   content.replaceChildren();
   content.appendChild(dom);
+}
+
+function taskInformation(task){
+  let title = task.getTitle();
+  let description = "description";
+  let expDate = task.getDueDate();
+  let priority = task.getPriority();
+  let notes = task.getNotes();
+
+  console.log ("fn call: "+ task.getTitle() + " on object: " + task);
+
+  console.log ("hitBefore: "+ title + description + expDate + priority+notes);
+
+  /*const editModal = new customModal({
+    titleText: title,
+    descriptionText: description,
+    expDateText: 'date',
+    priorityText: priority,
+    notesText: notes,
+  });*/
+  const editModal = new customModal({
+    titleText: title,
+    descriptionText: description,
+    expDateText: expDate,
+    priorityText: priority,
+    notesText: notes,
+  });
+
+  console.log ("hitAfter: "+ editModal);
+  editModal
+  .open()
+  .then(value => console.log("User clicked confirm: ", value))
+  .catch(value => console.log("User clicked cancel: ", value));
 }
 
 //Creates a dom container for all the stored projects
@@ -60,11 +96,13 @@ function displayProject(project) {
         }
     });
 
-
-
     //Add a button to get more details
     const details = document.createElement("div");
     details.textContent = "details";
+    details.addEventListener("click", event=>{
+      taskInformation(task);
+      displayProject(project);
+   });
 
     //Add a button to get more details
     const taskDate = document.createElement("div");

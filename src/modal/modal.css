@@ -1,0 +1,66 @@
+body {
+  background: linear-gradient(to right, #000428, #004e92);
+}
+
+button#openModal {
+  font-size: 2rem;
+  background-color: white;
+  padding: 1rem;
+  border: 0;
+  box-shadow: 0 0 24px rgba(255, 255, 255);
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.9);
+  /*Modal fills the entire page.  Sets the location of the modal*/
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /*Display the contents of the modal*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*Gives the modal an effect of showing up on on screen*/
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.modal.open {
+  opacity: 1;
+}
+
+.modal .content {
+  font-family: sans-serif;
+  background-color: white;
+  border-radius: 6px;
+  text-align: center;
+  padding: 4rem;
+  box-shadow: 0, 0, 64px 12px rgba(255, 255, 255, 0.2);
+}
+
+.modal .titleText {
+  font-weight: 900;
+  font-size: 2rem;
+}
+
+.modal .titleText {
+  margin: 2rem 0;
+}
+
+.modal .content button {
+  width: 40%;
+  padding: 0.75rem;
+  margin: 0 5px;
+  color: white;
+  border: 0;
+  border-radius: 6px;
+}
+
+.modal .content button.cancelBtnText {
+  background-color: rgb(218, 38, 38);
+}
+.modal .content button.confirmBtnText {
+  background-color: rgb(28, 144, 28);
+}
