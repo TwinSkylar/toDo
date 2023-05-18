@@ -28,17 +28,17 @@ export default class customModal {
 
     modalContentElem.appendChild(titleTextElem);
 
-    const descriptionTextElem = document.createElement("p");
-    descriptionTextElem.classList.add("descriptionText");
-    descriptionTextElem.textContent = this.descriptionText;
-
-    modalContentElem.appendChild(descriptionTextElem);
-
     const dateTextElem = document.createElement("p");
     dateTextElem.classList.add("expDateText");
     dateTextElem.textContent = this.expDateText;
 
     modalContentElem.appendChild(dateTextElem);
+
+    const descriptionTextElem = document.createElement("p");
+    descriptionTextElem.classList.add("descriptionText");
+    descriptionTextElem.textContent = this.descriptionText;
+
+    modalContentElem.appendChild(descriptionTextElem);
 
     const priorityTextElem = document.createElement("p");
     priorityTextElem.classList.add("priorityText");
@@ -46,14 +46,9 @@ export default class customModal {
     modalContentElem.appendChild(priorityTextElem);
 
 
-    const notesTextElem = document.createElement("p");
-    notesTextElem.classList.add("notesText");
-    notesTextElem.textContent = this.notesText;
-    modalContentElem.appendChild(notesTextElem);
-
     const cancelBtnElem = document.createElement("button");
     cancelBtnElem.classList.add("cancelBtnText");
-    cancelBtnElem.textContent = this.cancelText;
+    cancelBtnElem.textContent = "Cancel";
     cancelBtnElem.addEventListener("click", () => {
       onCancel("Cancelled");
       this.close();
@@ -63,7 +58,7 @@ export default class customModal {
 
     const confirmBtnElem = document.createElement("button");
     confirmBtnElem.classList.add("confirmBtnText");
-    confirmBtnElem.textContent = this.confirmText;
+    confirmBtnElem.textContent = "Save";
 
     confirmBtnElem.addEventListener("click", () => {
       onConfirm("Success");
