@@ -10,12 +10,12 @@ export function populateStorage() {
   /*test cases*/
   let dataArray = [];
 
-  dataArray.push(new toDo("title1", "description 1", "dueDate", 5, "notes"));
-  dataArray.push(new toDo("title2", "description 2", "dueDate", 1, "notes"));
-  dataArray.push(new toDo("title3", "description 3", "dueDate", 10, "notes"));
-  dataArray.push(new toDo("title4", "description 4", "dueDate", 6, "notes"));
-  dataArray.push(new toDo("title5", "description 5", "dueDate", 4, "notes"));
-  dataArray.push(new toDo("title7", "description 6", "dueDate", 5, "notes"));
+  dataArray.push(new toDo("title1", "description 1",  randomDate(), "low", "notes"));
+  dataArray.push(new toDo("title2", "description 2",  randomDate(), "low", "notes"));
+  dataArray.push(new toDo("title3", "description 3",  randomDate(), "medium", "notes"));
+  dataArray.push(new toDo("title4", "description 4",  randomDate(), "high", "notes"));
+  dataArray.push(new toDo("title5", "description 5",  randomDate(), "medium", "notes"));
+  dataArray.push(new toDo("title7", "description 6",  randomDate(), "high", "notes"));
 
 
   //const list = new taskList();
@@ -26,9 +26,9 @@ export function populateStorage() {
   });
 
   dataArray = [];
-  dataArray.push(new toDo("proj1", "description 1", "dueDate", 4, "notes"));
-  dataArray.push(new toDo("proj2", "description 2", "dueDate", 2, "notes"));
-  dataArray.push(new toDo("proj3", "description 3", "dueDate", 1, "notes"));
+  dataArray.push(new toDo("proj1", "description 1", randomDate(), "high", "notes"));
+  dataArray.push(new toDo("proj2", "description 2", randomDate(), "high", "notes"));
+  dataArray.push(new toDo("proj3", "description 3", randomDate(), "low", "notes"));
 
   dataArray.forEach((element) => {
     project2.addTask(element);
@@ -42,4 +42,14 @@ export function populateStorage() {
 
 export function addProject (project){
     allProjects.push(project);
+}
+
+function randomDate() {
+  var startDate = new Date().getTime();
+  var endDate = new Date(2024, 1, 1).getTime();
+  var space = endDate - startDate;
+  var timestamp = Math.round(Math.random() * space);
+  timestamp += startDate;
+
+  return new Date(timestamp);
 }

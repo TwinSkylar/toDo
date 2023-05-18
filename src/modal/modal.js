@@ -31,13 +31,14 @@ export default class customModal {
     //Label
     const titleTextLabel = document.createElement("label");
     titleTextLabel.className = "title";
-    titleTextElem.textContent = this.titleText;
+    titleTextElem.textContent = "Title:";
     titleTextElem.appendChild(titleTextLabel);
     //Input
     const titleTextInput = document.createElement("input");
     titleTextInput.id = "title";
     titleTextInput.className = "title";
     titleTextElem.appendChild(titleTextInput);
+    titleTextInput.value=this.titleText;
 
     modalContentElem.appendChild(titleTextElem);
 
@@ -45,7 +46,7 @@ export default class customModal {
     const priorityTextElem = document.createElement("div");
     priorityTextElem.classList.add("priorityText");
     const sectionTitle = document.createElement("p");
-    sectionTitle.textContent="Priority";
+    sectionTitle.textContent = "Priority";
     modalContentElem.appendChild(sectionTitle);
     //Label
     const priorityLowTextLabel = document.createElement("label");
@@ -57,6 +58,7 @@ export default class customModal {
     priorityLowTextInput.id = "priority";
     priorityLowTextInput.className = "priority";
     priorityLowTextInput.type = "radio";
+    priorityLowTextInput.name = "priority";
     priorityLowTextInput.value = "low";
     priorityTextElem.appendChild(priorityLowTextInput);
     //Container div
@@ -71,9 +73,9 @@ export default class customModal {
     priorityMedTextInput.id = "priority";
     priorityMedTextInput.className = "priority";
     priorityMedTextInput.type = "radio";
+    priorityMedTextInput.name = "priority";
     priorityMedTextInput.value = "med";
     priorityTextElem.appendChild(priorityMedTextInput);
-
 
     //Label
     const priorityHighTextLabel = document.createElement("label");
@@ -85,9 +87,21 @@ export default class customModal {
     priorityHighTextInput.id = "priority";
     priorityHighTextInput.className = "priority";
     priorityHighTextInput.type = "radio";
+    priorityHighTextInput.name = "priority";
     priorityHighTextInput.value = "high";
     priorityTextElem.appendChild(priorityHighTextInput);
-
+//Sets the default task priority
+    switch (this.priorityText) {
+      case "low":
+        priorityLowTextInput.checked = true;
+        break;
+      case "medium":
+        priorityMedTextInput.checked = true;
+        break;
+      case "high":
+        priorityHighTextInput.checked = true;
+        break;
+    }
     modalContentElem.appendChild(priorityTextElem);
 
     //Container div
@@ -96,13 +110,14 @@ export default class customModal {
     //Label
     const expDateTextLabel = document.createElement("label");
     expDateTextLabel.className = "expDate";
-    expDateTextElem.textContent = 'Due Date:';
+    expDateTextElem.textContent = "Due Date:";
     expDateTextElem.appendChild(expDateTextLabel);
     //Input
     const expDateTextInput = document.createElement("input");
     expDateTextInput.id = "expDate";
     expDateTextInput.className = "expDate";
     expDateTextInput.type = "date";
+    expDateTextInput.value=this.expDateText.toISOString().substr(0, 10);
     expDateTextElem.appendChild(expDateTextInput);
 
     modalContentElem.appendChild(expDateTextElem);
@@ -118,6 +133,8 @@ export default class customModal {
     const descriptionTextInput = document.createElement("input");
     descriptionTextInput.id = "description";
     descriptionTextInput.className = "description";
+    descriptionTextInput.value=this.descriptionText;
+
     descriptionTextElem.appendChild(descriptionTextInput);
 
     modalContentElem.appendChild(descriptionTextElem);

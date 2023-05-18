@@ -19,22 +19,11 @@ function renderPage(section, dom) {
 
 function taskInformation(task){
   let title = task.getTitle();
-  let description = "description";
+  let description = task.getDescription();
   let expDate = task.getDueDate();
   let priority = task.getPriority();
   let notes = task.getNotes();
 
-  console.log ("fn call: "+ task.getTitle() + " on object: " + task);
-
-  console.log ("hitBefore: "+ title + description + expDate + priority+notes);
-
-  /*const editModal = new customModal({
-    titleText: title,
-    descriptionText: description,
-    expDateText: 'date',
-    priorityText: priority,
-    notesText: notes,
-  });*/
   const editModal = new customModal({
     titleText: title,
     descriptionText: description,
@@ -43,7 +32,6 @@ function taskInformation(task){
     notesText: notes,
   });
 
-  console.log ("hitAfter: "+ editModal);
   editModal
   .open()
   .then(value => console.log("User clicked confirm: ", value))
@@ -106,7 +94,7 @@ function displayProject(project) {
 
     //Add a button to get more details
     const taskDate = document.createElement("div");
-    taskDate.textContent = "Date";
+    taskDate.textContent = task.getDueDate().toISOString().substr(0, 10);;
 
     //Add a delete for the task
     const del = document.createElement("div");
