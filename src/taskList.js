@@ -9,6 +9,7 @@ export default class taskList {
 
    addTask(task) {
     this._taskList.push(task);
+    return true;
   }
   removeTask(task) {
     const index = (this._taskList.indexOf(task));

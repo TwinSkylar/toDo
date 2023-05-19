@@ -46,7 +46,7 @@ export function addProject (project){
 
 function randomDate() {
   var startDate = new Date().getTime();
-  var endDate = new Date(2024, 1, 1).getTime();
+  var endDate = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
   var space = endDate - startDate;
   var timestamp = Math.round(Math.random() * space);
   timestamp += startDate;

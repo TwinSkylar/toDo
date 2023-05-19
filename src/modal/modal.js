@@ -37,17 +37,17 @@ export default class customModal {
     const titleTextInput = document.createElement("input");
     titleTextInput.id = "title";
     titleTextInput.className = "title";
+    titleTextInput.value = this.titleText;
+    
     titleTextElem.appendChild(titleTextInput);
-    titleTextInput.value=this.titleText;
-
-    modalContentElem.appendChild(titleTextElem);
+    modalContentElem.appendChild(titleTextElem)
 
     //Container div
     const priorityTextElem = document.createElement("div");
     priorityTextElem.classList.add("priorityText");
     const sectionTitle = document.createElement("p");
     sectionTitle.textContent = "Priority";
-    modalContentElem.appendChild(sectionTitle);
+    priorityTextElem.appendChild(sectionTitle);
     //Label
     const priorityLowTextLabel = document.createElement("label");
     priorityLowTextLabel.for = "low";
@@ -55,7 +55,7 @@ export default class customModal {
     priorityTextElem.appendChild(priorityLowTextLabel);
     //Input
     const priorityLowTextInput = document.createElement("input");
-    priorityLowTextInput.id = "priority";
+    priorityLowTextInput.id = "low";
     priorityLowTextInput.className = "priority";
     priorityLowTextInput.type = "radio";
     priorityLowTextInput.name = "priority";
@@ -65,16 +65,16 @@ export default class customModal {
 
     //Label
     const priorityMedTextLabel = document.createElement("label");
-    priorityMedTextLabel.for = "med";
-    priorityMedTextLabel.textContent = "Med";
+    priorityMedTextLabel.for = "medium";
+    priorityMedTextLabel.textContent = "Medium";
     priorityTextElem.appendChild(priorityMedTextLabel);
     //Input
     const priorityMedTextInput = document.createElement("input");
-    priorityMedTextInput.id = "priority";
+    priorityMedTextInput.id = "medium";
     priorityMedTextInput.className = "priority";
     priorityMedTextInput.type = "radio";
     priorityMedTextInput.name = "priority";
-    priorityMedTextInput.value = "med";
+    priorityMedTextInput.value = "medium";
     priorityTextElem.appendChild(priorityMedTextInput);
 
     //Label
@@ -84,13 +84,13 @@ export default class customModal {
     priorityTextElem.appendChild(priorityHighTextLabel);
     //Input
     const priorityHighTextInput = document.createElement("input");
-    priorityHighTextInput.id = "priority";
+    priorityHighTextInput.id = "high";
     priorityHighTextInput.className = "priority";
     priorityHighTextInput.type = "radio";
     priorityHighTextInput.name = "priority";
     priorityHighTextInput.value = "high";
     priorityTextElem.appendChild(priorityHighTextInput);
-//Sets the default task priority
+    //Sets the default task priority
     switch (this.priorityText) {
       case "low":
         priorityLowTextInput.checked = true;
@@ -117,7 +117,7 @@ export default class customModal {
     expDateTextInput.id = "expDate";
     expDateTextInput.className = "expDate";
     expDateTextInput.type = "date";
-    expDateTextInput.value=this.expDateText.toISOString().substr(0, 10);
+    expDateTextInput.value = this.expDateText.toISOString().substr(0, 10);
     expDateTextElem.appendChild(expDateTextInput);
 
     modalContentElem.appendChild(expDateTextElem);
@@ -133,7 +133,7 @@ export default class customModal {
     const descriptionTextInput = document.createElement("input");
     descriptionTextInput.id = "description";
     descriptionTextInput.className = "description";
-    descriptionTextInput.value=this.descriptionText;
+    descriptionTextInput.value = this.descriptionText;
 
     descriptionTextElem.appendChild(descriptionTextInput);
 
@@ -154,7 +154,13 @@ export default class customModal {
     confirmBtnElem.textContent = "Save";
 
     confirmBtnElem.addEventListener("click", () => {
-      onConfirm("Success");
+      onConfirm([
+        titleTextInput.value,
+        descriptionTextInput.value,
+        expDateTextInput.value,
+        Array.from(document.getElementsByName("priority")).find(r => r.checked).value,
+        "",
+      ]);
       this.close();
     });
     modalContentElem.appendChild(confirmBtnElem);

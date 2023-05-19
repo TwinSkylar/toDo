@@ -1,7 +1,7 @@
 import projects from "./projects.js";
 import customModal from "./modal/modal.js";
-import css from './modal/modal.css';
-
+import css from "./modal/modal.css";
+import toDo from "./todos.js";
 
 export function ScreenController(allProjects) {
   const home = document.getElementById("home");
@@ -17,7 +17,8 @@ function renderPage(section, dom) {
   content.appendChild(dom);
 }
 
-function taskInformation(task){
+function taskInformation(task, project) {
+  //Check if this is adding a new task
   let title = task.getTitle();
   let description = task.getDescription();
   let expDate = task.getDueDate();
@@ -33,9 +34,17 @@ function taskInformation(task){
   });
 
   editModal
-  .open()
-  .then(value => console.log("User clicked confirm: ", value))
-  .catch(value => console.log("User clicked cancel: ", value));
+    .open()
+    //updates the tasks with the modal value
+    .then((value) => {
+      //If this is a new
+      if (title === "") {
+        project.addTask(task);
+      }
+      task.update(value[0], value[1], new Date(value[2]), value[3], value[4]);
+      displayProject(project);
+    })
+    .catch((value) => console.log("User clicked cancel: ", value));
 }
 
 //Creates a dom container for all the stored projects
@@ -67,7 +76,7 @@ function displayProject(project) {
     toDoContainer.classList.add("toDo");
     toDoContainer.classList.add(task.getPriority());
 
-      //Add the name of the task
+    //Add the name of the task
     const taskName = document.createElement("div");
     taskName.textContent = task.getTitle();
 
@@ -75,34 +84,32 @@ function displayProject(project) {
     const checkBox = document.createElement("input");
     checkBox.setAttribute("type", "checkbox");
     //Adds a strikethrough to the text whenever the check box is ticked
-    checkBox.addEventListener("change", event=>{
-        if(event.target.checked){
-            taskName.style.setProperty("text-decoration", "line-through");
-        }
-        else{
-            taskName.style.setProperty("text-decoration", "none");
-        }
+    checkBox.addEventListener("change", (event) => {
+      if (event.target.checked) {
+        taskName.style.setProperty("text-decoration", "line-through");
+      } else {
+        taskName.style.setProperty("text-decoration", "none");
+      }
     });
 
     //Add a button to get more details
     const details = document.createElement("div");
     details.textContent = "details";
-    details.addEventListener("click", event=>{
-      taskInformation(task);
-      displayProject(project);
-   });
+    details.addEventListener("click", (event) => {
+      taskInformation(task, project);
+    });
 
     //Add a button to get more details
     const taskDate = document.createElement("div");
-    taskDate.textContent = task.getDueDate().toISOString().substr(0, 10);;
+    taskDate.textContent = task.getDueDate().toISOString().substr(0, 10);
 
     //Add a delete for the task
     const del = document.createElement("div");
     del.textContent = "delete";
 
-    del.addEventListener("click", event=>{
-       taskList.removeTask(task);
-       displayProject(project);
+    del.addEventListener("click", (event) => {
+      taskList.removeTask(task);
+      displayProject(project);
     });
 
     toDoContainer.appendChild(checkBox);
@@ -119,6 +126,11 @@ function displayProject(project) {
 
   const addTask = document.createElement("button");
   addTask.textContent = "+ Add task";
+  addTask.addEventListener("click", (event) => {
+    const newTask = new toDo("", "", new Date(), "low", "");
+    taskInformation(newTask, project);
+    console.log("we should be off to the races");
+  });
   dom.appendChild(addTask);
 
   content.replaceChildren();

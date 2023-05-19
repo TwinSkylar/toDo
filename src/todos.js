@@ -37,6 +37,14 @@ export default class toDo {
   setNote(notes){
     this_notes=notes;
   }
+
+  update(t,d,date,p,n){
+    this._title = t;
+    this._description = d;
+    this._dueDate = date;
+    this._priority = p;
+    this._notes = n;
+  }
 }
 
 
