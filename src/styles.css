@@ -3,7 +3,18 @@
 :root {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
-  --icon-gap: 5px;
+  /* COLORS PALETTE */
+  --aqua: #00b3bb;
+  --light-aqua: #00e6aa;
+  --dark-aqua: #0e9aa1;
+  --grey: #e6e6e6;
+  --light-grey: #f7f7f7;
+  --dark-grey: #757575;
+  --white: #ffffff;
+  --green: #61b874;
+  --yellow: #e6db7b;
+  --red: #e67b7b;
+  --dark-red: #c46161;
 }
 
 * {
@@ -12,6 +23,7 @@
   box-sizing: border-box;
 }
 
+/*Handles the structure of the webpage*/
 body {
   height: 100vh;
   display: grid;
@@ -55,4 +67,58 @@ body {
 #content,
 #footer {
   padding: 10px;
+}
+
+/*Handles the layout of each sub area*/
+
+.menuContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-top: 0.2rem;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#content .toDo {
+  display: grid;
+  border: solid 2px black;
+  grid-template-columns: min-content auto min-content 6rem min-content;
+  gap: 5px;
+}
+
+/*Handles the style of each task*/
+
+#content .toDo {
+  align-items: center;
+  padding: 5px;
+}
+
+#content .taskDetails {
+  border: 2px solid black;
+  height: 1em;
+}
+
+#content .taskDetails:hover {
+  border: 2px solid yellow;
+  cursor: grab;
+}
+
+#content .taskDel {
+  border: 2px solid black;
+  height: 1em;
+}
+
+#content .taskDel:hover {
+  cursor: grab;
+}
+
+/*Handles the color for the website*/
+#header,
+#footer {
+  background: linear-gradient(90deg, var(--aqua) 0%, var(--light-aqua) 100%);
 }

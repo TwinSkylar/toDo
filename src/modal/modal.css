@@ -28,14 +28,6 @@
   box-shadow: 0, 0, 64px 12px rgba(255, 255, 255, 0.2);
 }
 
-.modal .titleText {
-  font-weight: 900;
-  font-size: 2rem;
-}
-
-.modal .titleText {
-  margin: 2rem 0;
-}
 
 .modal .content button {
   padding: 0.75rem;
@@ -51,4 +43,9 @@
 }
 .modal .content button.confirmBtnText {
   background-color: rgb(28, 144, 28);
+}
+
+.priorityRadio{
+  display: flex;
+  gap: 5px;
 }

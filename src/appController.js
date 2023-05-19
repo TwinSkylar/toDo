@@ -1,10 +1,8 @@
 import projects from "./projects.js";
-import list from "./taskList.js";
 import toDo from './todos.js';
-import {ScreenController} from './UIController.js';
+import {ScreenController,displayProject} from './UIController.js';
 
 const allProjects = [];
-const test = 'testing';
 
 export function populateStorage() {
   /*test cases*/
@@ -38,6 +36,7 @@ export function populateStorage() {
   addProject (project2);
 
   ScreenController(allProjects);
+  displayProject(project1);
 }
 
 export function addProject (project){

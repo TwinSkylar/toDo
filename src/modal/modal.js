@@ -46,13 +46,18 @@ export default class customModal {
     const priorityTextElem = document.createElement("div");
     priorityTextElem.classList.add("priorityText");
     const sectionTitle = document.createElement("p");
-    sectionTitle.textContent = "Priority";
+    sectionTitle.textContent = "Priority:";
     priorityTextElem.appendChild(sectionTitle);
+
+    const priorityRadioElem = document.createElement("div");
+    priorityRadioElem.classList.add("priorityRadio");
+
+
     //Label
     const priorityLowTextLabel = document.createElement("label");
     priorityLowTextLabel.for = "low";
     priorityLowTextLabel.textContent = "Low";
-    priorityTextElem.appendChild(priorityLowTextLabel);
+    priorityRadioElem.appendChild(priorityLowTextLabel);
     //Input
     const priorityLowTextInput = document.createElement("input");
     priorityLowTextInput.id = "low";
@@ -60,14 +65,14 @@ export default class customModal {
     priorityLowTextInput.type = "radio";
     priorityLowTextInput.name = "priority";
     priorityLowTextInput.value = "low";
-    priorityTextElem.appendChild(priorityLowTextInput);
+    priorityRadioElem.appendChild(priorityLowTextInput);
     //Container div
 
     //Label
     const priorityMedTextLabel = document.createElement("label");
     priorityMedTextLabel.for = "medium";
     priorityMedTextLabel.textContent = "Medium";
-    priorityTextElem.appendChild(priorityMedTextLabel);
+    priorityRadioElem.appendChild(priorityMedTextLabel);
     //Input
     const priorityMedTextInput = document.createElement("input");
     priorityMedTextInput.id = "medium";
@@ -75,13 +80,13 @@ export default class customModal {
     priorityMedTextInput.type = "radio";
     priorityMedTextInput.name = "priority";
     priorityMedTextInput.value = "medium";
-    priorityTextElem.appendChild(priorityMedTextInput);
+    priorityRadioElem.appendChild(priorityMedTextInput);
 
     //Label
     const priorityHighTextLabel = document.createElement("label");
     priorityHighTextLabel.for = "high";
     priorityHighTextLabel.textContent = "High";
-    priorityTextElem.appendChild(priorityHighTextLabel);
+    priorityRadioElem.appendChild(priorityHighTextLabel);
     //Input
     const priorityHighTextInput = document.createElement("input");
     priorityHighTextInput.id = "high";
@@ -89,7 +94,7 @@ export default class customModal {
     priorityHighTextInput.type = "radio";
     priorityHighTextInput.name = "priority";
     priorityHighTextInput.value = "high";
-    priorityTextElem.appendChild(priorityHighTextInput);
+    priorityRadioElem.appendChild(priorityHighTextInput);
     //Sets the default task priority
     switch (this.priorityText) {
       case "low":
@@ -103,6 +108,7 @@ export default class customModal {
         break;
     }
     modalContentElem.appendChild(priorityTextElem);
+    modalContentElem.appendChild(priorityRadioElem);
 
     //Container div
     const expDateTextElem = document.createElement("div");

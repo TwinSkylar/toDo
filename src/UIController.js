@@ -1,7 +1,9 @@
-import projects from "./projects.js";
 import customModal from "./modal/modal.js";
 import css from "./modal/modal.css";
 import toDo from "./todos.js";
+import binIcon from "./images/bin.svg";
+import editIcon from "./images/edit.svg";
+
 
 export function ScreenController(allProjects) {
   const home = document.getElementById("home");
@@ -44,7 +46,9 @@ function taskInformation(task, project) {
       task.update(value[0], value[1], new Date(value[2]), value[3], value[4]);
       displayProject(project);
     })
-    .catch((value) => console.log("User clicked cancel: ", value));
+    .catch(err => {
+      // Nothing to do.
+    });
 }
 
 //Creates a dom container for all the stored projects
@@ -64,10 +68,11 @@ function createProjectDoms(allProjects) {
 }
 
 //Creates a dom container with all the tasks in a project
-function displayProject(project) {
-  const dom = document.createElement("div");
-  const content = document.getElementById("content");
+export function displayProject(project) {
+  const dom = document.getElementById("content");
   const taskList = project.getTasks();
+
+  dom.replaceChildren();
 
   //Populate the tasklist from the project
   taskList.getTaskList().forEach((task) => {
@@ -79,6 +84,7 @@ function displayProject(project) {
     //Add the name of the task
     const taskName = document.createElement("div");
     taskName.textContent = task.getTitle();
+    taskName.classList.add("taskName");
 
     //Add a checkbox to show completed tasks
     const checkBox = document.createElement("input");
@@ -93,32 +99,45 @@ function displayProject(project) {
     });
 
     //Add a button to get more details
-    const details = document.createElement("div");
-    details.textContent = "details";
-    details.addEventListener("click", (event) => {
+    const editTask = new Image();
+    editTask.src = editIcon;
+    editTask.alt = "details";
+    //details.textContent = "details";
+    editTask.classList.add("taskDetails");
+    editTask.addEventListener("click", (event) => {
       taskInformation(task, project);
     });
 
-    //Add a button to get more details
+    //Display the due date for the task
     const taskDate = document.createElement("div");
-    taskDate.textContent = task.getDueDate().toISOString().substr(0, 10);
+    taskDate.textContent = task.getDueDate().toDateString().substr(0, 10);
+    taskDate.classList.add("taskDate");
 
     //Add a delete for the task
-    const del = document.createElement("div");
-    del.textContent = "delete";
-
+    const del = new Image();
+    del.src = binIcon;
+    del.alt = "delete";
+    del.classList.add("taskDel");
     del.addEventListener("click", (event) => {
       taskList.removeTask(task);
       displayProject(project);
     });
 
+    //Sets the border color of each task to reflect the priority
+    let borderColor = "red";
+    if (task.getPriority() === "medium"){
+      borderColor = "yellow";
+    }else if(task.getPriority()==="low"){
+      borderColor = "green";
+    }
     toDoContainer.appendChild(checkBox);
     toDoContainer.appendChild(taskName);
-    toDoContainer.appendChild(details);
+    toDoContainer.appendChild(editTask);
     toDoContainer.appendChild(taskDate);
     toDoContainer.appendChild(del);
 
-    //Attaches the task element to the content window
+    toDoContainer.style.borderLeftColor = borderColor;
+    //Attaches the task element to the content window    
     dom.appendChild(toDoContainer);
   });
 
@@ -129,10 +148,6 @@ function displayProject(project) {
   addTask.addEventListener("click", (event) => {
     const newTask = new toDo("", "", new Date(), "low", "");
     taskInformation(newTask, project);
-    console.log("we should be off to the races");
   });
   dom.appendChild(addTask);
-
-  content.replaceChildren();
-  content.appendChild(dom);
 }
