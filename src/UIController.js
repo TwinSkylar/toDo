@@ -1,4 +1,5 @@
 import customModal from "./modal/modal.js";
+import {saveData} from "./appController.js"
 import css from "./modal/modal.css";
 import toDo from "./todos.js";
 import binIcon from "./images/bin.svg";
@@ -43,6 +44,7 @@ function taskInformation(task, project) {
         project.addTask(task);
       }
       task.update(value[0], value[1], new Date(value[2]), value[3], value[4]);
+      saveData();
       displayProject(project);
     })
     .catch((err) => {
@@ -76,6 +78,7 @@ function createProjectDoms(allProjects) {
   delProject.textContent = "Delete projects";
   delProject.addEventListener("click", (event) => {
     localStorage.clear(0);
+    
   });
   menuContainer.appendChild(delProject);
 

@@ -74,9 +74,7 @@ function randomDate() {
   return new Date(timestamp);
 }
 
-function saveData() {
-  console.log("length is: + " + allProjects.length);
-
+export function saveData() {
   //Store the number of projects
 
   window.localStorage.setItem("projectNumber", allProjects.length);
@@ -85,7 +83,6 @@ function saveData() {
   for (let i = 0; i < allProjects.length; i++) {
     //Stores the project name
     window.localStorage.setItem("project" + i, JSON.stringify(allProjects[i]));
-    console.log("saving: " + allProjects[i].getTaskSize());
     window.localStorage.setItem(
       "project" + i + "Tasks",
       JSON.stringify(allProjects[i].getTaskSize())
@@ -113,7 +110,7 @@ function getData() {
         JSONTask[0]._title,
         JSONTask[0]._description,
         new Date(JSONTask[0]._dueDate),
-        JSONTask[0].priority,
+        JSONTask[0]._priority,
         JSONTask[0]._notes
       );
       newProject.addTask(newTask);
