@@ -5,7 +5,7 @@ import { ScreenController, displayProject } from "./UIController.js";
 let allProjects = [];
 
 export function populateStorage() {
-  //localStorage.clear();
+  allProjects = [];
   if (!localStorage.getItem("projectNumber")) {
     /*test cases*/
     let dataArray = [];

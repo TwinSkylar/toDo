@@ -1,5 +1,5 @@
 import customModal from "./modal/modal.js";
-import {saveData,populateStorage} from "./appController.js"
+import { saveData, populateStorage } from "./appController.js";
 import css from "./modal/modal.css";
 import toDo from "./todos.js";
 import binIcon from "./images/bin.svg";
@@ -10,12 +10,13 @@ export function ScreenController(allProjects) {
   const projects = document.getElementById("projects");
   const content = document.getElementById("content");
 
+  projects.replaceChildren();
   projects.appendChild(createProjectDoms(allProjects));
 }
 
 function renderPage(section, dom) {
   const content = document.getElementById(section);
-  content.replaceChildren();
+  projects.replaceChildren();
   content.appendChild(dom);
 }
 
@@ -79,6 +80,8 @@ function createProjectDoms(allProjects) {
   delProject.addEventListener("click", (event) => {
     localStorage.clear(0);
     populateStorage();
+    const content = document.getElementById("content");
+    content.replaceChildren();
   });
   menuContainer.appendChild(delProject);
   return menuContainer;
