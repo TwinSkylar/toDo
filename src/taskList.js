@@ -15,4 +15,8 @@ export default class taskList {
     const index = (this._taskList.indexOf(task));
     this._taskList.splice(index, 1);
   }
+
+  getTaskSize(){
+    return this._taskList.length;
+  }
 }

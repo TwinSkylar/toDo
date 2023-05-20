@@ -18,4 +18,7 @@ export default class Project {
   addTask(task) {
     this._tasks.addTask(task);
   }
+  getTaskSize(){
+    return this._tasks.getTaskSize();
+  }
 }

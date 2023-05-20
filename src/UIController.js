@@ -4,7 +4,6 @@ import toDo from "./todos.js";
 import binIcon from "./images/bin.svg";
 import editIcon from "./images/edit.svg";
 
-
 export function ScreenController(allProjects) {
   const home = document.getElementById("home");
   const projects = document.getElementById("projects");
@@ -46,7 +45,7 @@ function taskInformation(task, project) {
       task.update(value[0], value[1], new Date(value[2]), value[3], value[4]);
       displayProject(project);
     })
-    .catch(err => {
+    .catch((err) => {
       // Nothing to do.
     });
 }
@@ -64,6 +63,24 @@ function createProjectDoms(allProjects) {
     });
     menuContainer.appendChild(btn);
   });
+
+  /*  Removes the add project button.  You can't add projects at this time.
+  const addProject = document.createElement("button");
+  addProject.textContent = "+ Add Project";
+  addProject.addEventListener("click", (event) => {});
+  menuContainer.appendChild(addProject);
+  */
+
+  /*Creates a delete all projects*/
+  const delProject = document.createElement("button");
+  delProject.textContent = "Delete projects";
+  delProject.addEventListener("click", (event) => {
+    localStorage.clear(0);
+  });
+  menuContainer.appendChild(delProject);
+
+  
+
   return menuContainer;
 }
 
@@ -125,9 +142,9 @@ export function displayProject(project) {
 
     //Sets the border color of each task to reflect the priority
     let borderColor = "red";
-    if (task.getPriority() === "medium"){
+    if (task.getPriority() === "medium") {
       borderColor = "yellow";
-    }else if(task.getPriority()==="low"){
+    } else if (task.getPriority() === "low") {
       borderColor = "green";
     }
     toDoContainer.appendChild(checkBox);
@@ -137,7 +154,7 @@ export function displayProject(project) {
     toDoContainer.appendChild(del);
 
     toDoContainer.style.borderLeftColor = borderColor;
-    //Attaches the task element to the content window    
+    //Attaches the task element to the content window
     dom.appendChild(toDoContainer);
   });
 
