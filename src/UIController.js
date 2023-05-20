@@ -1,5 +1,5 @@
 import customModal from "./modal/modal.js";
-import {saveData} from "./appController.js"
+import {saveData,populateStorage} from "./appController.js"
 import css from "./modal/modal.css";
 import toDo from "./todos.js";
 import binIcon from "./images/bin.svg";
@@ -75,15 +75,12 @@ function createProjectDoms(allProjects) {
 
   /*Creates a delete all projects*/
   const delProject = document.createElement("button");
-  delProject.textContent = "Delete projects";
+  delProject.textContent = "Generate projects";
   delProject.addEventListener("click", (event) => {
     localStorage.clear(0);
-    
+    populateStorage();
   });
   menuContainer.appendChild(delProject);
-
-  
-
   return menuContainer;
 }
 
@@ -140,6 +137,7 @@ export function displayProject(project) {
     del.classList.add("taskDel");
     del.addEventListener("click", (event) => {
       taskList.removeTask(task);
+      saveData();
       displayProject(project);
     });
 
